@@ -29,6 +29,7 @@ const SlideItem: React.FC<SlideItemProps> = ({
   TitleComponent,
   SubtitleComponent,
   OutroComponent,
+  webImage,
 }) => {
   return (
     <View style={styles.slideContainer}>
@@ -36,7 +37,7 @@ const SlideItem: React.FC<SlideItemProps> = ({
         <ImageComponent />
       ) : (
         <Image
-          source={{ uri: item.img }}
+          source={!webImage ? require(item.img) : { uri: item.img }}
           resizeMode="contain"
           style={styles.image}
         />

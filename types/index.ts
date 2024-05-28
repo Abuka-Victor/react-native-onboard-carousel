@@ -14,7 +14,7 @@ export interface PageInterface {
 
 export interface OnboardProps {
   onDone: GenericFunction,
-  skipEnabled: boolean,
+  skipEnabled?: boolean,
   ImageComponent: React.FC,
   TitleComponent: React.FC,
   SubtitleComponent: React.FC,
@@ -29,6 +29,7 @@ export interface SlideItemProps {
   TitleComponent: React.FC,
   SubtitleComponent: React.FC,
   OutroComponent: React.FC,
+  webImage?: boolean,
 }
 
 export interface PaginationProps {
