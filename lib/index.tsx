@@ -10,13 +10,20 @@ import {
   Dimensions,
   Animated,
   TouchableOpacity,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 import { useRef, useState } from 'react';
 
-import data from './index';
+import {
+  OnboardProps,
+  SlideItemProps,
+  PaginationProps,
+  HandleViewChangeProps,
+} from '../types';
 
 const { width, height } = Dimensions.get('screen');
-const SlideItem = ({
+const SlideItem: React.FC<SlideItemProps> = ({
   item,
   ImageComponent,
   TitleComponent,
@@ -28,7 +35,11 @@ const SlideItem = ({
       {ImageComponent ? (
         <ImageComponent />
       ) : (
-        <Image source={item.img} resizeMode="contain" style={styles.image} />
+        <Image
+          source={{ uri: item.img }}
+          resizeMode="contain"
+          style={styles.image}
+        />
       )}
       <View style={styles.content}>
         {TitleComponent ? (
@@ -52,7 +63,7 @@ const SlideItem = ({
   );
 };
 
-const Pagination = ({ data, scrollX }) => {
+const Pagination: React.FC<PaginationProps> = ({ data, scrollX }) => {
   return (
     <View style={styles.dotContainer}>
       {data.map((_, idx) => {
@@ -78,7 +89,7 @@ const Pagination = ({ data, scrollX }) => {
   );
 };
 
-export default function Onboard({
+const Onboard: React.FC<OnboardProps> = ({
   onDone,
   skipEnabled,
   ImageComponent,
@@ -87,11 +98,11 @@ export default function Onboard({
   OutroComponent,
   backgroundColor,
   slides,
-}) {
+}) => {
   const [index, setIndex] = useState(0);
-  const flatListRef = useRef(null);
+  const flatListRef = useRef<FlatList | null>(null);
   const scrollX = useRef(new Animated.Value(0)).current;
-  const handleScroll = (e) => {
+  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     Animated.event(
       [
         {
@@ -108,14 +119,17 @@ export default function Onboard({
     )(e);
   };
 
-  const handleViewableItemChanged = useRef(({ viewableItems }) => {
-    setIndex(viewableItems[0].index);
-  }).current;
+  const handleViewableItemChanged = useRef(
+    ({ viewableItems }: HandleViewChangeProps) => {
+      if (viewableItems[0].index !== null) {
+        setIndex(viewableItems[0].index);
+      }
+    }
+  ).current;
 
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
   }).current;
-
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: backgroundColor }]}
@@ -143,7 +157,7 @@ export default function Onboard({
         onViewableItemsChanged={handleViewableItemChanged}
         viewabilityConfig={viewabilityConfig}
       />
-      <Pagination data={slides} scrollX={scrollX} index={index} />
+      <Pagination data={slides} scrollX={scrollX} />
       <View style={styles.buttonContainer}>
         {index === slides.length - 1 ? (
           <TouchableOpacity style={styles.button} onPress={() => onDone()}>
@@ -153,10 +167,12 @@ export default function Onboard({
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              flatListRef.current.scrollToIndex({
-                index: index + 1,
-                animated: true,
-              });
+              if (flatListRef !== null && flatListRef.current !== null) {
+                flatListRef.current.scrollToIndex({
+                  index: index + 1,
+                  animated: true,
+                });
+              }
             }}
           >
             <Text style={styles.buttonText}>Continue</Text>
@@ -171,10 +187,12 @@ export default function Onboard({
             right: 20,
           }}
           onPress={() => {
-            flatListRef.current.scrollToIndex({
-              index: slides.length - 1,
-              animated: true,
-            });
+            if (flatListRef !== null && flatListRef.current !== null) {
+              flatListRef.current.scrollToIndex({
+                index: slides.length - 1,
+                animated: true,
+              });
+            }
           }}
         >
           <Text style={{ fontSize: 18 }}>Skip</Text>
@@ -182,7 +200,9 @@ export default function Onboard({
       ) : null}
     </SafeAreaView>
   );
-}
+};
+
+export default Onboard;
 
 const styles = StyleSheet.create({
   container: {
@@ -243,7 +263,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#000',
     paddingVertical: 15,
     paddingHorizontal: 100,
     borderRadius: 99,

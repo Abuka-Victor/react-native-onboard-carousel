@@ -1,13 +1,15 @@
 {
   "name": "react-native-onboard-carousel",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A react native customizable onboarding component",
   "main": "./lib/index.js",
   "files": [
-    "./lib"
+    "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
+    "build:esm": "npx tsc",
+    "build:cjs": "npx tsc --module CommonJS --outDir dist/cjs"
   },
   "repository": {
     "type": "git",
@@ -42,5 +44,12 @@
   "bugs": {
     "url": "https://github.com/Abuka-Victor/react-native-onboard-carousel/issues"
   },
-  "homepage": "https://github.com/Abuka-Victor/react-native-onboard-carousel#readme"
+  "homepage": "https://github.com/Abuka-Victor/react-native-onboard-carousel#readme",
+  "devDependencies": {
+    "@tsconfig/react-native": "^3.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-test-renderer": "^18.3.0",
+    "typescript": "^5.4.5"
+  }
 }
