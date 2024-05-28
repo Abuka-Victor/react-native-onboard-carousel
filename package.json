@@ -1,0 +1,46 @@
+{
+  "name": "react-native-onboard-carousel",
+  "version": "0.0.1",
+  "description": "A react native customizable onboarding component",
+  "main": "./lib/index.js",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abuka-Victor/react-native-onboard-carousel.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "React-Native",
+    "Onboarding",
+    "Tutorial",
+    "Intro",
+    "Swiper",
+    "Welcome",
+    "Introduction",
+    "Instructions",
+    "Walkthrough",
+    "Expo",
+    "Carousel"
+  ],
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "author": "Victor Abuka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abuka-Victor/react-native-onboard-carousel/issues"
+  },
+  "homepage": "https://github.com/Abuka-Victor/react-native-onboard-carousel#readme"
+}
