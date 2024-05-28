@@ -1,6 +1,10 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowJs": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true
   }
 }

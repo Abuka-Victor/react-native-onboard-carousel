@@ -1,14 +1,14 @@
 {
   "name": "react-native-onboard-carousel",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A react native customizable onboarding component",
   "main": "./lib/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
-    "build:esm": "npx tsc",
+    "build": "rm -rf dist/ && npm run build:esm",
+    "build:esm": "npx tsc lib/*.tsx --declaration --allowJs --outDir ./dist/",
     "build:cjs": "npx tsc --module CommonJS --outDir dist/cjs"
   },
   "repository": {
