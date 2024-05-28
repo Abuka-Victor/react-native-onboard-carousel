@@ -1,6 +1,6 @@
 {
   "name": "react-native-onboard-carousel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A react native customizable onboarding component",
   "main": "./lib/index.js",
   "files": [
