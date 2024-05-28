@@ -54,17 +54,24 @@ const App = function () {
       slides={[
         {
           id: 1,
-          img: require('./assets/image1.png'),
+          img: './assets/image1.png',
           title: 'Ride like a king',
           subtitle: 'The future of transport is now in your hands',
           outro: 'Starting from $10',
         },
         {
           id: 2,
-          img: require('./assets/image2.png'),
+          img: './assets/image2.png',
           title: 'Order in real time',
           subtitle: 'At the best rates',
           outro: '$99.99 Cap',
+        },
+        {
+          id: 3,
+          img: 'https://image.similarpng.com/very-thumbnail/2022/03/Red-car-on-transparent-background-PNG.png',
+          title: 'Some other important text',
+          subtitle: 'Some subtitle',
+          webImage: true,
         },
       ]}
       skipEnabled={true}

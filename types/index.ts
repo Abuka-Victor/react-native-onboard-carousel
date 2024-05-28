@@ -9,7 +9,7 @@ export interface PageInterface {
   title: string,
   subtitle: string,
   outro: string,
-
+  webImage: boolean,
 }
 
 export interface OnboardProps {
@@ -29,7 +29,6 @@ export interface SlideItemProps {
   TitleComponent: React.FC,
   SubtitleComponent: React.FC,
   OutroComponent: React.FC,
-  webImage?: boolean,
 }
 
 export interface PaginationProps {
