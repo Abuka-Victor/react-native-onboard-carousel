@@ -5,6 +5,8 @@
 <H3 align="center"><strong>React Native Onboard Carousel</strong></H3>
 <div align="center">Build a cool onboarding in your app fast</div>
 
+![React Native Onboard Carousel cover](./sample.png)
+
 ## Introduction
 
 This library is an onboarding carousel component which can be used for effortless user onboarding and focuses on saving developer time.
@@ -46,28 +48,33 @@ Place the `Onboard` component anywhere in your app. It will automatically take u
 ```jsx
 import Onboard from 'react-native-onboard-carousel';
 
-const App = () => {
+const App = function () {
   return (
     <Onboard
       slides={[
         {
           id: 1,
-          img: require('./assets/image1.jpeg'),
+          img: require('./assets/image1.png'),
           title: 'Ride like a king',
           subtitle: 'The future of transport is now in your hands',
-          outro: 'Join us',
+          outro: 'Starting from $10',
         },
         {
           id: 2,
-          img: require('./assets/image2.jpeg'),
+          img: require('./assets/image2.png'),
           title: 'Order in real time',
           subtitle: 'At the best rates',
-          outro: 'Join Us',
+          outro: '$99.99 Cap',
         },
       ]}
+      skipEnabled={true}
+      onDone={() => console.log('Move to another screen')}
+      backgroundColor={'#fff'}
     />
   );
 };
+
+export default App;
 ```
 
 ### Using server images
