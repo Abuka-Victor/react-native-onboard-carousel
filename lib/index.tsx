@@ -23,38 +23,33 @@ import {
 } from '../types';
 
 const { width, height } = Dimensions.get('screen');
-const SlideItem: React.FC<SlideItemProps> = ({
-  item,
-  ImageComponent,
-  TitleComponent,
-  SubtitleComponent,
-  OutroComponent,
-}) => {
+const SlideItem: React.FC<SlideItemProps> = ({ item }) => {
   return (
     <View style={styles.slideContainer}>
-      {ImageComponent ? (
-        <ImageComponent />
+      {item.ImageComponent ? (
+        <item.ImageComponent />
       ) : (
         <Image
-          source={!item.webImage ? require(item.img) : { uri: item.img }}
+          source={{ uri: item.imageUri }}
           resizeMode="contain"
           style={styles.image}
+          accessibilityRole="image"
         />
       )}
       <View style={styles.content}>
-        {TitleComponent ? (
-          <TitleComponent />
+        {item.TitleComponent ? (
+          <item.TitleComponent />
         ) : (
           <Text style={styles.title}>{item.title}</Text>
         )}
-        {SubtitleComponent ? (
-          <SubtitleComponent />
+        {item.SubtitleComponent ? (
+          <item.SubtitleComponent />
         ) : (
           <Text style={styles.subtitle}>{item.subtitle}</Text>
         )}
 
-        {OutroComponent ? (
-          <OutroComponent />
+        {item.OutroComponent ? (
+          <item.OutroComponent />
         ) : (
           <Text style={styles.outro}>{item.outro}</Text>
         )}
@@ -92,10 +87,6 @@ const Pagination: React.FC<PaginationProps> = ({ data, scrollX }) => {
 const Onboard: React.FC<OnboardProps> = ({
   onDone,
   skipEnabled,
-  ImageComponent,
-  TitleComponent,
-  SubtitleComponent,
-  OutroComponent,
   backgroundColor,
   slides,
 }) => {
@@ -138,16 +129,7 @@ const Onboard: React.FC<OnboardProps> = ({
         ref={flatListRef}
         data={slides}
         renderItem={({ item, index }) => {
-          return (
-            <SlideItem
-              key={index.toString()}
-              item={item}
-              ImageComponent={ImageComponent}
-              TitleComponent={TitleComponent}
-              OutroComponent={OutroComponent}
-              SubtitleComponent={SubtitleComponent}
-            />
-          );
+          return <SlideItem key={index.toString()} item={item} />;
         }}
         horizontal={true}
         pagingEnabled={true}

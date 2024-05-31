@@ -5,30 +5,26 @@ type GenericFunction = (...args: any[]) => any;
 export interface PageInterface {
 
   id: number,
-  img: string,
+  imageUri: string,
   title: string,
   subtitle: string,
-  outro: string,
-  webImage: boolean,
+  outro?: string,
+  ImageComponent?: React.FC,
+  TitleComponent?: React.FC,
+  SubtitleComponent?: React.FC,
+  OutroComponent?: React.FC,
 }
 
 export interface OnboardProps {
   onDone: GenericFunction,
   skipEnabled?: boolean,
-  ImageComponent: React.FC,
-  TitleComponent: React.FC,
-  SubtitleComponent: React.FC,
-  OutroComponent: React.FC,
   backgroundColor: string,
   slides: PageInterface[],
 }
 
 export interface SlideItemProps {
   item: PageInterface,
-  ImageComponent: React.FC,
-  TitleComponent: React.FC,
-  SubtitleComponent: React.FC,
-  OutroComponent: React.FC,
+
 }
 
 export interface PaginationProps {
