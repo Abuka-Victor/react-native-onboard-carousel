@@ -7,6 +7,13 @@
 
 ![React Native Onboard Carousel cover](./sample.png)
 
+<div align="center">
+<a href="https://github.com/Abuka-Victor/react-native-onboard-carousel">GitHub</a> 
+<span> · </span>
+<a href="https://snack.expo.dev/@abuka/react-native-onboard-carousel-demo?platform=ios">Demo</a>
+
+</div>
+
 ## Introduction
 
 This library is an onboarding carousel component which can be used for effortless user onboarding and focuses on saving developer time.
@@ -46,7 +53,11 @@ npm install react-native-onboard-carousel
 Place the `Onboard` component anywhere in your app. It will automatically take up the entire screen.
 
 ```jsx
+import { Image, StyleSheet } from 'react-native';
 import Onboard from 'react-native-onboard-carousel';
+
+import image1 from './assets/image1.png';
+import image2 from './assets/ipad.jpeg';
 
 const App = function () {
   return (
@@ -54,21 +65,40 @@ const App = function () {
       slides={[
         {
           id: 1,
-          img: './assets/image1.png',
+          ImageComponent: () => {
+            return (
+              <Image
+                source={image1}
+                resizeMode="contain"
+                style={styles.image}
+                accessibilityRole="image"
+              />
+            );
+          },
           title: 'Ride like a king',
           subtitle: 'The future of transport is now in your hands',
           outro: 'Starting from $10',
         },
         {
           id: 2,
-          img: './assets/image2.png',
+          ImageComponent: () => {
+            return (
+              <Image
+                source={image2}
+                resizeMode="contain"
+                style={styles.image}
+                accessibilityRole="image"
+              />
+            );
+          },
           title: 'Order in real time',
           subtitle: 'At the best rates',
           outro: '$99.99 Cap',
         },
         {
           id: 3,
-          img: 'https://image.similarpng.com/very-thumbnail/2022/03/Red-car-on-transparent-background-PNG.png',
+          imageUri:
+            'https://t3.ftcdn.net/jpg/06/36/01/48/360_F_636014891_ne8XUB4YU4WoMeUUjr0TU6wH38wNTU6V.jpg',
           title: 'Some other important text',
           subtitle: 'Some subtitle',
           webImage: true,
@@ -81,16 +111,19 @@ const App = function () {
   );
 };
 
+const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    flex: 0.6,
+  },
+});
+
 export default App;
 ```
 
-### Using server images
+### Contributing
 
-If you wish to load your image assets from the web rather than from your project, you can type in the web url.
-
-<!-- ```jsx
-img: 'https://me.com/img/cute_cat_pic3266421.png'
-``` -->
+If you wish to contribute please see [Contributing.md](./Contributing.md).
 
 ## Customization
 
